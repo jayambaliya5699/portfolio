@@ -1,0 +1,58 @@
+.text-grey{
+    color: grey;
+}
+
+.card-font{
+    font-size:100px;
+}
+
+.intro {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.section-divider{
+    font-size: 24px;
+    font-weight: bold;
+    color:blue;
+}
+
+#dynamic-text {
+/*    color: #007bff;*/
+    transition: opacity 0.5s ease;
+    color: blue;
+}
+
+
+.carousel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    animation: scroll 20s linear infinite;
+}
+
+.card {
+    min-width: 200px;
+    height: 200px;
+    margin: 0 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 5px solid grey;
+    background-color: white;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+

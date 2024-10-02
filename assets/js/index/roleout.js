@@ -1,9 +1,9 @@
+const year = new Date().getFullYear()- 2021
+
 const roles = [
-    'Odoo Database Migration Expert',
-    'Odoo Data Migration Specialist',
-    'Odoo Functional Consultant',
-    'Odoo Integration Specialist',
-    'Odoo Customization Expert'
+    'Odoo Developer',
+    'Functional Consultant',
+    `${year}+ years Industry Experience`,
 ];
 
 let index = 0;

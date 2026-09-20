@@ -21,6 +21,77 @@
 </section>
 
 <!-- PROJECT -->
+<section class="section project-case" id="procurement-delivery">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Procurement Approval Engine &amp; Delivery Ownership</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>ERP Delivery Management<br/>Procurement &amp; Approvals</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18 &amp; 19<br/>Purchase, Inventory,<br/>Accounting, Approvals<br/>PostgreSQL</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Techno Functional Consultant<br/>Delivery Owner</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Ongoing</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>A multi-company group needed one procurement process spanning several branches and regions, each with its own authority limits.</li>
+                <li>Approval rules lived in people&rsquo;s heads and in spreadsheets, so the same request was routed differently depending on who handled it.</li>
+                <li>Local and foreign purchasing followed genuinely different flows, but the system treated them identically.</li>
+                <li>Goods receipts were accepted against purchase orders with no tolerance checking, so over- and under-delivery went unnoticed until reconciliation.</li>
+                <li>Role boundaries were unclear: users could see and act on documents belonging to other companies.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Ran discovery with procurement, finance and branch stakeholders and turned the outcome into written functional specs with explicit acceptance criteria.</li>
+                <li>Built a configurable approval engine: workflow definitions scoped by a domain, so one model can carry different approval chains for different record types &mdash; no per-flow code.</li>
+                <li>Modelled the full request chain from material request through purchase request to purchase order, with defined rules for when approval is required and when it is safely skipped.</li>
+                <li>Separated local from foreign procurement: direct purchase orders with splitting for local, multi-quotation comparison for foreign, plus budget checks on the foreign side.</li>
+                <li>Scoped approvers, notifications and pending-action lists to the requesting company, with a documented fallback so nothing silently loses its approver.</li>
+                <li>Added a goods-receipt tolerance check comparing demand against received quantity within a configurable percentage band.</li>
+                <li>Defined four procurement roles with access rights mapped per document type, and put a regression test gate in CI to protect the workflow rules.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Delivery Practice</h3>
+            <ul>
+                <li>Requirements captured as written specs and confirmed with stakeholders before any development started.</li>
+                <li>Every change tested functionally on a staging database and signed off before reaching production users.</li>
+                <li>Version upgrades batched deliberately rather than applied per change, so production upgrades stay predictable.</li>
+                <li>Workflow rules and naming conventions documented so a future developer inherits the reasoning, not just the code.</li>
+                <li>Delivered fully remote and async, across time zones, with written updates as the default channel.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<!-- PROJECT -->
 <section class="section project-case" id="amazon-fba">
 
     <div class="project-header">

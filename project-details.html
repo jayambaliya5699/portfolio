@@ -21,6 +21,277 @@
 </section>
 
 <!-- PROJECT -->
+<section class="section project-case" id="workflow-studio">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Workflow Studio &mdash; Approval &amp; Access Platform</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Platform Engineering<br/>Approvals &amp; Access Control</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/>base.automation<br/>Record Rules<br/>PostgreSQL</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Techno Functional Consultant<br/>Solution Design</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Ongoing</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>Approval logic had been written separately for every document type &mdash; sales, purchase, invoicing, stock &mdash; each as its own module with its own quirks.</li>
+                <li>Changing an approval rule meant a developer, a code change and a release, so business users could not adjust their own authority limits.</li>
+                <li>The same conceptual rule was implemented inconsistently across modules, and the differences were invisible until something was approved by the wrong person.</li>
+                <li>There was no single audit answer to &ldquo;who approved this, and under which rule?&rdquo;</li>
+                <li>Access rights were scattered across groups with no readable model of who could do what.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Designed a single approval engine &mdash; approval types, rules, requests and request lines &mdash; that any model can use without writing model-specific code.</li>
+                <li>Workflow definitions are scoped by a domain, so one model can carry different approval chains for different record types. Local and foreign purchase orders, for example, route differently off the same mechanism.</li>
+                <li>Approvals fire on any model through base automations rather than a mixin, so onboarding a new document type is configuration, not development.</li>
+                <li>Built a role-based access layer structured as Roles &rarr; Permissions &rarr; Privileges, so access can be reasoned about and reviewed in business language.</li>
+                <li>Added an audit log and reason-capture mixin covering approvals, rejections and closures.</li>
+                <li>Handled the awkward edges properly: approval types on company-less models, and approver resolution scoped to the requesting company with a documented fallback.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Migration &amp; Impact</h3>
+            <ul>
+                <li>Wrote a bridge module that reproduces the legacy per-document approval flows on top of the new engine, so the old modules could be retired without a big-bang cutover.</li>
+                <li>Legacy approval modules were emptied one at a time behind the bridge rather than deleted underneath live users.</li>
+                <li>Business users can now define and change approval chains themselves; developer involvement is no longer on the critical path for a policy change.</li>
+                <li>One consistent audit trail across every approved document type.</li>
+                <li>The engine was later backported to a second Odoo 18 codebase and reused on a third deployment &mdash; it became a product rather than a customisation.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<section class="section project-case" id="manufacturing-plm">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Manufacturing &amp; PLM Implementation</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Manufacturing, MRP<br/>PLM &amp; Quality</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/>MRP, PLM, Quality<br/>Sales &amp; Inventory<br/>XLSX Reporting</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Developer &rarr;<br/>Techno Functional Consultant</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Multi-year &middot; 1,250+ commits</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>Engineered-to-order products meant nearly every sales order implied a new or modified bill of materials, and building them by hand was slow and error-prone.</li>
+                <li>Product variants carried many configurable attributes, and mismatches between what was sold and what was planned surfaced late &mdash; often on the shop floor.</li>
+                <li>Costing was incomplete: BOMs did not carry additional costs or supplier discounts, so margin at quotation time was unreliable.</li>
+                <li>Engineering needed BOM data in spreadsheets for review, and production needed quality-check results in a reportable form.</li>
+                <li>Planners had no consolidated view of which approved deliveries were actually ready for production.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Built a guided BOM creation and customisation layer on top of Odoo MRP, driven by product variant options, so configured products generate their BOM rather than having one typed in.</li>
+                <li>Extended BOM costing with additional costs and discount handling, feeding accurate figures back into sale margin.</li>
+                <li>Linked sales orders to PLM: BOM-driven order lines, sale-to-PLM approval flow, and BOM reporting from the sales side.</li>
+                <li>Delivered BOM Excel/PLM reports generated straight from the product, plus low-stock visibility against BOM components.</li>
+                <li>Built manufacturing quality-check reporting on top of Odoo&rsquo;s quality module for production orders.</li>
+                <li>Created a bulk planning dashboard showing deliveries approved for production, with aging, work-centre and MO status views &mdash; including automatic detection of attribute mismatches between sold and planned configurations.</li>
+                <li>Added a sales order tracking dashboard covering production, delivery and invoice status in one place.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Business Impact</h3>
+            <ul>
+                <li>Configured products move from quotation to a costed, buildable BOM without manual re-entry.</li>
+                <li>Attribute mismatches are caught at planning time instead of on the shop floor.</li>
+                <li>Quotation margins reflect real BOM cost including extras and discounts.</li>
+                <li>Engineering, planning and sales work from the same BOM data rather than parallel spreadsheets.</li>
+                <li>Planners get one screen answering &ldquo;what can we actually build next?&rdquo;</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<section class="section project-case" id="trade-finance">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Letters of Credit &amp; Bank Facility Management</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Trade Finance<br/>Built From Scratch</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/>Accounting, Purchase<br/>Multi-currency</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Techno Functional Consultant<br/>Domain Modelling</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Ongoing</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>The business imported and exported under letters of credit and bank guarantees, and Odoo has no standard application for any of it.</li>
+                <li>LC lifecycles &mdash; issuance, amendments, document presentation, discrepancies, settlement &mdash; were tracked in spreadsheets and email threads.</li>
+                <li>Bank facility limits were monitored manually, so utilisation against a facility was only known approximately.</li>
+                <li>Bank charges, commissions and commitment fees were booked after the fact, often in the wrong period.</li>
+                <li>There was no link between an LC and the purchase orders or shipments it actually covered.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Modelled the domain properly in Odoo: LC orders with amendments, bank charges, bill commitments and document tracking, linked to the purchase orders they finance.</li>
+                <li>Built a facility management layer covering bank facilities and limits, export LCs and drawings, corporate guarantees, discrepancies, commission lines and commission schedules.</li>
+                <li>Wired trade finance into accounting &mdash; dedicated journals and accounts, multi-currency handling, and incoterms &mdash; so charges and commitments land in the right period automatically.</li>
+                <li>Added supporting accounting work around it: automatic fiscal positions on purchase receipt, landed costs, and provisioning for doubtful debts.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Why It Mattered</h3>
+            <ul>
+                <li>This is the project I&rsquo;d point at if you want to know how I handle a domain I don&rsquo;t already know.</li>
+                <li>There was no reference implementation and no Odoo app to configure &mdash; it started with the finance team explaining trade finance to me, and with a lot of questions.</li>
+                <li>The work was mostly modelling: getting the entities and their lifecycles right before writing anything, because a wrong model here is expensive to unwind.</li>
+                <li>Real-time visibility of facility utilisation, and LC status that finance and procurement can both see.</li>
+                <li>Bank charges and commissions captured against the right facility and period rather than reconstructed later.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<section class="section project-case" id="mcp-server">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Odoo MCP Server &mdash; AI Assistant Integration</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>AI / LLM Integration<br/>API &amp; Security</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 19<br/>Model Context Protocol<br/>OAuth 2.0<br/>JSON-RPC</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Developer &amp; Solution Design</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Recent &middot; ongoing</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> The Opportunity</h3>
+            <ul>
+                <li>AI assistants are useful against business data, but pointing one at an ERP naively means handing it broad database access &mdash; which is not acceptable for a production system.</li>
+                <li>Teams wanted to ask questions of their Odoo data in natural language without exporting it somewhere else.</li>
+                <li>Any such bridge has to be auditable: what was asked, what was accessed, by which client.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Built a Model Context Protocol server inside Odoo, exposing it to AI assistants through a standard protocol rather than a bespoke API.</li>
+                <li>Access is opt-in per model &mdash; nothing is reachable until it is explicitly enabled &mdash; and custom tools can be defined for specific business operations.</li>
+                <li>Implemented full OAuth 2.0: client registration, authorization codes and token lifecycle, so assistants authenticate as real clients with scoped access.</li>
+                <li>Added request logging for a complete record of what was accessed and by whom.</li>
+                <li>Built a companion AI tool layer so the same tool definitions can be reused outside MCP.</li>
+                <li>Paired with a generic audit trail module logging create, write and delete across any configured model, with automatic retention purging.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Why I Built It</h3>
+            <ul>
+                <li>Nobody asked me to learn the Model Context Protocol &mdash; it was new, it was clearly relevant to ERP, and I wanted to understand it properly rather than read about it.</li>
+                <li>It forced me into areas I had not worked in deeply before: OAuth 2.0 flows, protocol design, and thinking about AI access as a security boundary rather than a feature.</li>
+                <li>This is a fair sample of how I approach unfamiliar technology: build a real, safe, auditable thing with it rather than a demo.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
 <section class="section project-case" id="procurement-delivery">
 
     <div class="project-header">
@@ -221,7 +492,7 @@
 
     <div class="project-header">
         <!-- <i class="fa-brands fa-amazon"></i> -->
-        <h1 style="color:#875A7B;">POS Misc Changes</h1>
+        <h1 style="color:#875A7B;">Retail POS with Payment Terminals &amp; Scale Barcodes</h1>
     </div>
 
     <p class="project-summary">
@@ -234,7 +505,7 @@
             </div>
             <div>
                 <strong>Tech Stack</strong>
-                <span>Odoo 18<br/>JS/OWL<br/>Odoo SH</span>
+                <span>Odoo 18<br/>JS/OWL<br/>Odoo SH<br/>IoT &amp; hw_drivers<br/>PAX Terminals</span>
             </div>
             <div>
                 <strong>Role</strong>
@@ -257,6 +528,18 @@
                 <li>Card option is selected by default on payment screen</li>
                 <li>Include Amount and text fields on searchbar on 'View Order' and 'View Refund' Screen</li>
                 <li>Dynamic print receipt option before payment completion</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-microchip"></i> Hardware &amp; Integration</h3>
+            <ul>
+                <li>Integrated PAX card payment terminals with Odoo POS through the IoT and hardware driver layer, including a custom hardware proxy.</li>
+                <li>Extended Odoo&rsquo;s hardware driver framework to talk to devices it does not support out of the box.</li>
+                <li>Implemented weight-embedded barcode handling, deriving weight and price from scale-printed barcodes for loose goods.</li>
+                <li>Built barcode-driven stock operations and automatic purchase entry generated from goods receipts.</li>
+                <li>Delivered custom receipt design, Z-reports, payment-method PDF reporting and an advanced POS reporting suite.</li>
+                <li>Added low-stock alerts surfaced directly on the POS product screen.</li>
             </ul>
         </div>
 

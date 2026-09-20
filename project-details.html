@@ -76,7 +76,7 @@
         <div class="project-block highlight">
             <h3><i class="fa-solid fa-chart-line"></i> Migration &amp; Impact</h3>
             <ul>
-                <li>Wrote a bridge module that reproduces the legacy per-document approval flows on top of the new engine, so the old modules could be retired without a big-bang cutover.</li>
+                <li>Wrote a bridge module reproducing the legacy per-document approval flows on top of the new engine, so the old modules could be retired without a big-bang cutover.</li>
                 <li>Legacy approval modules were emptied one at a time behind the bridge rather than deleted underneath live users.</li>
                 <li>Business users can now define and change approval chains themselves; developer involvement is no longer on the critical path for a policy change.</li>
                 <li>One consistent audit trail across every approved document type.</li>
@@ -151,138 +151,6 @@
                 <li>Quotation margins reflect real BOM cost including extras and discounts.</li>
                 <li>Engineering, planning and sales work from the same BOM data rather than parallel spreadsheets.</li>
                 <li>Planners get one screen answering &ldquo;what can we actually build next?&rdquo;</li>
-            </ul>
-        </div>
-
-    </div>
-
-</section>
-
-<hr>
-
-<section class="section project-case" id="trade-finance">
-
-    <div class="project-header">
-        <h1 style="color:#875A7B;">Letters of Credit &amp; Bank Facility Management</h1>
-    </div>
-
-    <p class="project-summary">
-        <div class="project-highlights">
-            <div>
-                <strong>Scope</strong>
-                <span>Trade Finance<br/>Built From Scratch</span>
-            </div>
-            <div>
-                <strong>Tech Stack</strong>
-                <span>Odoo 18<br/>Accounting, Purchase<br/>Multi-currency</span>
-            </div>
-            <div>
-                <strong>Role</strong>
-                <span>Techno Functional Consultant<br/>Domain Modelling</span>
-            </div>
-            <div>
-                <strong>Duration</strong>
-                <span>Ongoing</span>
-            </div>
-        </div>
-    </p>
-
-    <div class="project-grid">
-
-        <div class="project-block highlight">
-            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
-            <ul>
-                <li>The business imported and exported under letters of credit and bank guarantees, and Odoo has no standard application for any of it.</li>
-                <li>LC lifecycles &mdash; issuance, amendments, document presentation, discrepancies, settlement &mdash; were tracked in spreadsheets and email threads.</li>
-                <li>Bank facility limits were monitored manually, so utilisation against a facility was only known approximately.</li>
-                <li>Bank charges, commissions and commitment fees were booked after the fact, often in the wrong period.</li>
-                <li>There was no link between an LC and the purchase orders or shipments it actually covered.</li>
-            </ul>
-        </div>
-
-        <div class="project-block highlight">
-            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
-            <ul>
-                <li>Modelled the domain properly in Odoo: LC orders with amendments, bank charges, bill commitments and document tracking, linked to the purchase orders they finance.</li>
-                <li>Built a facility management layer covering bank facilities and limits, export LCs and drawings, corporate guarantees, discrepancies, commission lines and commission schedules.</li>
-                <li>Wired trade finance into accounting &mdash; dedicated journals and accounts, multi-currency handling, and incoterms &mdash; so charges and commitments land in the right period automatically.</li>
-                <li>Added supporting accounting work around it: automatic fiscal positions on purchase receipt, landed costs, and provisioning for doubtful debts.</li>
-            </ul>
-        </div>
-
-        <div class="project-block highlight">
-            <h3><i class="fa-solid fa-chart-line"></i> Why It Mattered</h3>
-            <ul>
-                <li>This is the project I&rsquo;d point at if you want to know how I handle a domain I don&rsquo;t already know.</li>
-                <li>There was no reference implementation and no Odoo app to configure &mdash; it started with the finance team explaining trade finance to me, and with a lot of questions.</li>
-                <li>The work was mostly modelling: getting the entities and their lifecycles right before writing anything, because a wrong model here is expensive to unwind.</li>
-                <li>Real-time visibility of facility utilisation, and LC status that finance and procurement can both see.</li>
-                <li>Bank charges and commissions captured against the right facility and period rather than reconstructed later.</li>
-            </ul>
-        </div>
-
-    </div>
-
-</section>
-
-<hr>
-
-<section class="section project-case" id="mcp-server">
-
-    <div class="project-header">
-        <h1 style="color:#875A7B;">Odoo MCP Server &mdash; AI Assistant Integration</h1>
-    </div>
-
-    <p class="project-summary">
-        <div class="project-highlights">
-            <div>
-                <strong>Scope</strong>
-                <span>AI / LLM Integration<br/>API &amp; Security</span>
-            </div>
-            <div>
-                <strong>Tech Stack</strong>
-                <span>Odoo 19<br/>Model Context Protocol<br/>OAuth 2.0<br/>JSON-RPC</span>
-            </div>
-            <div>
-                <strong>Role</strong>
-                <span>Developer &amp; Solution Design</span>
-            </div>
-            <div>
-                <strong>Duration</strong>
-                <span>Recent &middot; ongoing</span>
-            </div>
-        </div>
-    </p>
-
-    <div class="project-grid">
-
-        <div class="project-block highlight">
-            <h3><i class="fa-solid fa-triangle-exclamation"></i> The Opportunity</h3>
-            <ul>
-                <li>AI assistants are useful against business data, but pointing one at an ERP naively means handing it broad database access &mdash; which is not acceptable for a production system.</li>
-                <li>Teams wanted to ask questions of their Odoo data in natural language without exporting it somewhere else.</li>
-                <li>Any such bridge has to be auditable: what was asked, what was accessed, by which client.</li>
-            </ul>
-        </div>
-
-        <div class="project-block highlight">
-            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
-            <ul>
-                <li>Built a Model Context Protocol server inside Odoo, exposing it to AI assistants through a standard protocol rather than a bespoke API.</li>
-                <li>Access is opt-in per model &mdash; nothing is reachable until it is explicitly enabled &mdash; and custom tools can be defined for specific business operations.</li>
-                <li>Implemented full OAuth 2.0: client registration, authorization codes and token lifecycle, so assistants authenticate as real clients with scoped access.</li>
-                <li>Added request logging for a complete record of what was accessed and by whom.</li>
-                <li>Built a companion AI tool layer so the same tool definitions can be reused outside MCP.</li>
-                <li>Paired with a generic audit trail module logging create, write and delete across any configured model, with automatic retention purging.</li>
-            </ul>
-        </div>
-
-        <div class="project-block highlight">
-            <h3><i class="fa-solid fa-chart-line"></i> Why I Built It</h3>
-            <ul>
-                <li>Nobody asked me to learn the Model Context Protocol &mdash; it was new, it was clearly relevant to ERP, and I wanted to understand it properly rather than read about it.</li>
-                <li>It forced me into areas I had not worked in deeply before: OAuth 2.0 flows, protocol design, and thinking about AI access as a security boundary rather than a feature.</li>
-                <li>This is a fair sample of how I approach unfamiliar technology: build a real, safe, auditable thing with it rather than a demo.</li>
             </ul>
         </div>
 

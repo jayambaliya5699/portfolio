@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Case Studies | Odoo Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<section class="project-detail-hero">
+    <h1>Project Case Study</h1>
+    <p>Real-world Odoo implementation & integration experience</p>
+    <p><strong>Note:</strong> Client names and full project details are not disclosed to respect confidentiality and NDA commitments.</p>
+    <a href="projects.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</section>
+
+<!-- PROJECT -->
+<section class="section project-case" id="workflow-studio">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Workflow Studio &mdash; Approval &amp; Access Platform</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Platform Engineering<br/>Approvals &amp; Access Control</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/>base.automation<br/>Record Rules<br/>PostgreSQL</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Techno Functional Consultant<br/>Solution Design</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Ongoing</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>Approval logic had been written separately for every document type &mdash; sales, purchase, invoicing, stock &mdash; each as its own module with its own quirks.</li>
+                <li>Changing an approval rule meant a developer, a code change and a release, so business users could not adjust their own authority limits.</li>
+                <li>The same conceptual rule was implemented inconsistently across modules, and the differences were invisible until something was approved by the wrong person.</li>
+                <li>There was no single audit answer to &ldquo;who approved this, and under which rule?&rdquo;</li>
+                <li>Access rights were scattered across groups with no readable model of who could do what.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Designed a single approval engine &mdash; approval types, rules, requests and request lines &mdash; that any model can use without writing model-specific code.</li>
+                <li>Workflow definitions are scoped by a domain, so one model can carry different approval chains for different record types. Local and foreign purchase orders, for example, route differently off the same mechanism.</li>
+                <li>Approvals fire on any model through base automations rather than a mixin, so onboarding a new document type is configuration, not development.</li>
+                <li>Built a role-based access layer structured as Roles &rarr; Permissions &rarr; Privileges, so access can be reasoned about and reviewed in business language.</li>
+                <li>Added an audit log and reason-capture mixin covering approvals, rejections and closures.</li>
+                <li>Handled the awkward edges properly: approval types on company-less models, and approver resolution scoped to the requesting company with a documented fallback.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Migration &amp; Impact</h3>
+            <ul>
+                <li>Wrote a bridge module reproducing the legacy per-document approval flows on top of the new engine, so the old modules could be retired without a big-bang cutover.</li>
+                <li>Legacy approval modules were emptied one at a time behind the bridge rather than deleted underneath live users.</li>
+                <li>Business users can now define and change approval chains themselves; developer involvement is no longer on the critical path for a policy change.</li>
+                <li>One consistent audit trail across every approved document type.</li>
+                <li>The engine was later backported to a second Odoo 18 codebase and reused on a third deployment &mdash; it became a product rather than a customisation.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<section class="section project-case" id="manufacturing-plm">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Manufacturing &amp; PLM Implementation</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Manufacturing, MRP<br/>PLM &amp; Quality</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/>MRP, PLM, Quality<br/>Sales &amp; Inventory<br/>XLSX Reporting</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Developer &rarr;<br/>Techno Functional Consultant</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Multi-year &middot; 1,250+ commits</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>Engineered-to-order products meant nearly every sales order implied a new or modified bill of materials, and building them by hand was slow and error-prone.</li>
+                <li>Product variants carried many configurable attributes, and mismatches between what was sold and what was planned surfaced late &mdash; often on the shop floor.</li>
+                <li>Costing was incomplete: BOMs did not carry additional costs or supplier discounts, so margin at quotation time was unreliable.</li>
+                <li>Engineering needed BOM data in spreadsheets for review, and production needed quality-check results in a reportable form.</li>
+                <li>Planners had no consolidated view of which approved deliveries were actually ready for production.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Built a guided BOM creation and customisation layer on top of Odoo MRP, driven by product variant options, so configured products generate their BOM rather than having one typed in.</li>
+                <li>Extended BOM costing with additional costs and discount handling, feeding accurate figures back into sale margin.</li>
+                <li>Linked sales orders to PLM: BOM-driven order lines, sale-to-PLM approval flow, and BOM reporting from the sales side.</li>
+                <li>Delivered BOM Excel/PLM reports generated straight from the product, plus low-stock visibility against BOM components.</li>
+                <li>Built manufacturing quality-check reporting on top of Odoo&rsquo;s quality module for production orders.</li>
+                <li>Created a bulk planning dashboard showing deliveries approved for production, with aging, work-centre and MO status views &mdash; including automatic detection of attribute mismatches between sold and planned configurations.</li>
+                <li>Added a sales order tracking dashboard covering production, delivery and invoice status in one place.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Business Impact</h3>
+            <ul>
+                <li>Configured products move from quotation to a costed, buildable BOM without manual re-entry.</li>
+                <li>Attribute mismatches are caught at planning time instead of on the shop floor.</li>
+                <li>Quotation margins reflect real BOM cost including extras and discounts.</li>
+                <li>Engineering, planning and sales work from the same BOM data rather than parallel spreadsheets.</li>
+                <li>Planners get one screen answering &ldquo;what can we actually build next?&rdquo;</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<section class="section project-case" id="procurement-delivery">
+
+    <div class="project-header">
+        <h1 style="color:#875A7B;">Procurement Approval Engine &amp; Delivery Ownership</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>ERP Delivery Management<br/>Procurement &amp; Approvals</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18 &amp; 19<br/>Purchase, Inventory,<br/>Accounting, Approvals<br/>PostgreSQL</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Techno Functional Consultant<br/>Delivery Owner</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>Ongoing</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>A multi-company group needed one procurement process spanning several branches and regions, each with its own authority limits.</li>
+                <li>Approval rules lived in people&rsquo;s heads and in spreadsheets, so the same request was routed differently depending on who handled it.</li>
+                <li>Local and foreign purchasing followed genuinely different flows, but the system treated them identically.</li>
+                <li>Goods receipts were accepted against purchase orders with no tolerance checking, so over- and under-delivery went unnoticed until reconciliation.</li>
+                <li>Role boundaries were unclear: users could see and act on documents belonging to other companies.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Ran discovery with procurement, finance and branch stakeholders and turned the outcome into written functional specs with explicit acceptance criteria.</li>
+                <li>Built a configurable approval engine: workflow definitions scoped by a domain, so one model can carry different approval chains for different record types &mdash; no per-flow code.</li>
+                <li>Modelled the full request chain from material request through purchase request to purchase order, with defined rules for when approval is required and when it is safely skipped.</li>
+                <li>Separated local from foreign procurement: direct purchase orders with splitting for local, multi-quotation comparison for foreign, plus budget checks on the foreign side.</li>
+                <li>Scoped approvers, notifications and pending-action lists to the requesting company, with a documented fallback so nothing silently loses its approver.</li>
+                <li>Added a goods-receipt tolerance check comparing demand against received quantity within a configurable percentage band.</li>
+                <li>Defined four procurement roles with access rights mapped per document type, and put a regression test gate in CI to protect the workflow rules.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Delivery Practice</h3>
+            <ul>
+                <li>Requirements captured as written specs and confirmed with stakeholders before any development started.</li>
+                <li>Every change tested functionally on a staging database and signed off before reaching production users.</li>
+                <li>Version upgrades batched deliberately rather than applied per change, so production upgrades stay predictable.</li>
+                <li>Workflow rules and naming conventions documented so a future developer inherits the reasoning, not just the code.</li>
+                <li>Delivered fully remote and async, across time zones, with written updates as the default channel.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<!-- PROJECT -->
+<section class="section project-case" id="amazon-fba">
+
+    <div class="project-header">
+        <!-- <i class="fa-brands fa-amazon"></i> -->
+        <h1 style="color:#875A7B;">Odoo Amazon FBA Connector</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Integration & Automation</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/> Amazon SP-API<br/>Odoo SH</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Developer<br/>Odoo Functional Consultant</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>6+ Months</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Business Challenge</h3>
+            <ul>
+                <li>Amazon FBA operations were distributed across multiple tools and platforms.</li>
+                <li>Invoicing and financial records were managed in Xero, disconnected from Odoo.</li>
+                <li>Inventory tracking and demand forecasting were maintained manually using Google Sheets.</li>
+                <li>Lack of a single source of truth caused stock inconsistencies between systems.</li>
+                <li>Manual data entry increased operational overhead and risk of human error.</li>
+                <li>Delayed visibility into orders, inventory levels, and financial data impacted decision-making.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-lightbulb"></i> Solution Delivered</h3>
+            <ul>
+                <li>Designed and implemented a centralized Amazon FBA integration within Odoo.</li>
+                <li>Automated synchronization of inventory levels between Amazon FBA and Odoo.</li>
+                <li>Streamlined order imports with accurate fulfillment and shipment status updates.</li>
+                <li>Enabled structured data flow to support accounting and financial reconciliation.</li>
+                <li>Replaced manual Google Sheets tracking with real-time inventory visibility inside Odoo.</li>
+                <li>Implemented validation and error-handling mechanisms to ensure data consistency.</li>
+        </ul>
+
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-chart-line"></i> Business Impact</h3>
+            <ul>
+                <li>Established Odoo as the single source of truth for Amazon FBA operations.</li>
+                <li>Eliminated manual reconciliation between Xero, Google Sheets, and Amazon.</li>
+                <li>Significantly reduced stock mismatches and inventory discrepancies.</li>
+                <li>Improved operational efficiency by minimizing manual data entry.</li>
+                <li>Enabled real-time visibility into inventory, orders, and fulfillment status.</li>
+                <li>Provided reliable data for forecasting, reporting, and business decision-making.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<!-- SECOND PROJECT TEMPLATE -->
+<section class="section project-case" id="sumup">
+
+    <div class="project-header">
+        <!-- <i class="fa-solid fa-credit-card"></i> -->
+        <h1 style="color:#875A7B;">Sumup Payment Integration</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Payment Integration</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Developer</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>1 Month</span>
+            </div>
+        </div>
+
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3>Key Features</h3>
+            <ul>
+                <li>API-based payment confirmation</li>
+                <li>Automatic journal entries</li>
+                <li>Supports partial/full refund</li>
+                <li>Error handling and retries</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3>Outcome</h3>
+            <p>
+                Payment Option with SumUp for website orders.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<hr>
+
+<section class="section project-case" id="pos">
+
+    <div class="project-header">
+        <!-- <i class="fa-brands fa-amazon"></i> -->
+        <h1 style="color:#875A7B;">Retail POS with Payment Terminals &amp; Scale Barcodes</h1>
+    </div>
+
+    <p class="project-summary">
+        <div class="project-highlights">
+            <div>
+                <strong>Scope</strong>
+                <span>Smooth UI experience</br></span>
+                <span>Faster Navigation</br></span>
+                <span>Dynamic reporting</span>
+            </div>
+            <div>
+                <strong>Tech Stack</strong>
+                <span>Odoo 18<br/>JS/OWL<br/>Odoo SH<br/>IoT &amp; hw_drivers<br/>PAX Terminals</span>
+            </div>
+            <div>
+                <strong>Role</strong>
+                <span>Odoo Developer</span>
+            </div>
+            <div>
+                <strong>Duration</strong>
+                <span>~3 Months(Ongoing)</span>
+            </div>
+        </div>
+    </p>
+
+    <div class="project-grid">
+
+        <div class="project-block highlight">
+            <h3>UI Features</h3>
+            <ul>
+                <li>Autofocus search bar on POS screen when it loads</li>
+                <li>Added custom fields's search option on Product screen searchbar</li>
+                <li>Card option is selected by default on payment screen</li>
+                <li>Include Amount and text fields on searchbar on 'View Order' and 'View Refund' Screen</li>
+                <li>Dynamic print receipt option before payment completion</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3><i class="fa-solid fa-microchip"></i> Hardware &amp; Integration</h3>
+            <ul>
+                <li>Integrated PAX card payment terminals with Odoo POS through the IoT and hardware driver layer, including a custom hardware proxy.</li>
+                <li>Extended Odoo&rsquo;s hardware driver framework to talk to devices it does not support out of the box.</li>
+                <li>Implemented weight-embedded barcode handling, deriving weight and price from scale-printed barcodes for loose goods.</li>
+                <li>Built barcode-driven stock operations and automatic purchase entry generated from goods receipts.</li>
+                <li>Delivered custom receipt design, Z-reports, payment-method PDF reporting and an advanced POS reporting suite.</li>
+                <li>Added low-stock alerts surfaced directly on the POS product screen.</li>
+            </ul>
+        </div>
+
+        <div class="project-block highlight">
+            <h3> Backend Features</h3>
+            <ul>
+                <li>POS Receipt changes</li>
+                <li>POS Order Details report changes, include an option to print certain products on reports</li>
+                <li>Validation for order amount and payment amount is mismatched</li>
+                <li>Raise a popup if order amount is greater than 200$</li>
+                <li>Margin and Profit features on product and in barcode screen of receipt while selecting products</li>
+                <li>Keep track of product's price history</li>  
+            </ul>
+
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
